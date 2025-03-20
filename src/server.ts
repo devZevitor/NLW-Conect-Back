@@ -11,6 +11,11 @@ import {
 import { z } from 'zod'
 import { subscribeToEventRoute } from './routes/subscribe-to-event-route'
 import { env } from './types/env'
+import { accessInviteLinkRoute } from './routes/access-invite-link-route'
+import { getSubscriberInviteClicksRoute } from './routes/get-subscriber-invite-clicks-route'
+import { getSubscriberInvitesCountRoute } from './routes/get-subscriber-invites-count-route'
+import { getSubscriberRankingPositionRoute } from './routes/get-subscriber-ranking-position-route'
+import { getRankingRoute } from './routes/get-ranking-route'
 
 const server = fastify().withTypeProvider<ZodTypeProvider>()
 
@@ -33,7 +38,12 @@ server.register(fastifySwaggerUi, {
   routePrefix: '/docs',
 })
 
-server.register(subscribeToEventRoute)
+server.register(subscribeToEventRoute);
+server.register(accessInviteLinkRoute);
+server.register(getSubscriberInviteClicksRoute);
+server.register(getSubscriberInvitesCountRoute);
+server.register(getSubscriberRankingPositionRoute);
+server.register(getRankingRoute)
 server.listen({ port: env.PORT }).then(() => {
   console.log('Server is running!')
 })

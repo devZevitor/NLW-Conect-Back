@@ -9,9 +9,9 @@ services:
   app:
     build: .
     environment:
-      - POSTGRES_URL=${POSTGRES_URL}
+      - POSTGRES_URL=${DATABASE_URL}
+      - REDIS_HOST=service-redis
+      - REDIS_PORT=6379
+    depends_on:
+      - service-redis
     command: ["npm", "run", "migrate"]
-
-
-volumes:
-  - pg_data:/bitnami/postgresql

@@ -9,9 +9,9 @@ services:
   app:
     build: .
     environment:
-      - POSTGRES_URL=${DATABASE_URL}
-      - REDIS_HOST=service-redis
-      - REDIS_PORT=6379
+      - PORT=${PORT}
+      - POSTGRES_URL=${DATABASE_URL} 
+      - WEB_URL=${WEB_URL}
+      - REDIS_URL=redis://service-redis:6379
     depends_on:
       - service-redis
-    command: ["npm", "run", "migrate"]
